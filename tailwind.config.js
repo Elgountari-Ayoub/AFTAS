@@ -5,10 +5,13 @@ module.exports = {
     "./node_modules/flowbite/**/*.js"
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'aftasColor': '#1a81ba'
+      }
+    },
   },
   plugins: [
     require('flowbite/plugin') // add this line
   ],
 }
-

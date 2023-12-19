@@ -10,6 +10,7 @@ import { CompetitionComponent } from './components/competition/competition.compo
 import { CompetitionCreateComponent } from './components/competition-create/competition-create.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MembersComponent } from './components/members/members/members.component';
+import { MemberCreateComponent } from './components/members/member-create/member-create.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { MembersComponent } from './components/members/members/members.component
     CompetitionComponent,
     CompetitionCreateComponent,
     MembersComponent,
+    MemberCreateComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,132 @@
+<section class="">
+  <form
+    class="mx-auto w-full md:w-2/4 p-5 border-2 bg-blur-bold rounded-md w-full"
+    [formGroup]="memberForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <h1 class="text-3xl font-normal text-gray-900 text-center">
+      Create a Member
+    </h1>
+
+    <!-- Name -->
+    <div class="mt-12 md:mt-4">
+      <label class="font-light text-black">Name</label>
+      <input
+        formControlName="name"
+        type="text"
+        placeholder="Member name"
+        class="w-full placeholder:font-thin border focus:outline-none border-black to-white rounded-md px-4 pt-2 pb-2"
+      />
+      <div
+        *ngIf="
+          memberForm.get('name')?.hasError('required') &&
+          memberForm.get('name')?.touched
+        "
+        class="text-gray-900 p-1 bg-red-500 text-xs mt-1 rounded"
+      >
+        Name is required.
+      </div>
+    </div>
+
+    <!-- Family Name -->
+    <div class="mt-12 md:mt-4">
+      <label class="font-light text-black">Family Name</label>
+      <input
+        formControlName="familyName"
+        type="text"
+        placeholder="Member family name"
+        class="w-full placeholder:font-thin border focus:outline-none border-black to-white rounded-md px-4 pt-2 pb-2"
+      />
+      <div
+        *ngIf="
+          memberForm.get('familyName')?.hasError('required') &&
+          memberForm.get('familyName')?.touched
+        "
+        class="text-gray-900 p-1 bg-red-500 text-xs mt-1 rounded"
+      >
+        Family Name is required.
+      </div>
+    </div>
+
+    <!-- Nationality -->
+    <div class="mt-12 md:mt-4">
+      <label class="font-light text-black">Nationality</label>
+      <input
+        formControlName="nationality"
+        type="text"
+        placeholder="Member nationality"
+        class="w-full placeholder:font-thin border focus:outline-none border-black to-white rounded-md px-4 pt-2 pb-2"
+      />
+      <div
+        *ngIf="
+          memberForm.get('nationality')?.hasError('required') &&
+          memberForm.get('nationality')?.touched
+        "
+        class="text-gray-900 p-1 bg-red-500 text-xs mt-1 rounded"
+      >
+        Nationality is required.
+      </div>
+    </div>
+
+    <!-- Identity Number -->
+    <div class="mt-12 md:mt-4">
+      <label class="font-light text-black">Identity Number</label>
+      <input
+        formControlName="identityNumber"
+        type="text"
+        placeholder="Member identity number"
+        class="w-full placeholder:font-thin border focus:outline-none border-black to-white rounded-md px-4 pt-2 pb-2"
+      />
+      <div
+        *ngIf="
+          memberForm.get('identityNumber')?.hasError('required') &&
+          memberForm.get('identityNumber')?.touched
+        "
+        class="text-gray-900 p-1 bg-red-500 text-xs mt-1 rounded"
+      >
+        Identity Number is required.
+      </div>
+    </div>
+
+    <!-- Identity Document -->
+    <div class="mt-12 md:mt-4">
+      <label class="font-light text-black">Identity Document</label>
+      <select
+        formControlName="identityDocument"
+        class="w-full placeholder:font-thin border focus:outline-none border-black to-white rounded-md px-4 pt-2 pb-2"
+      >
+        <option value="" disabled selected>Select Identity Document</option>
+        <option value="CIN">CIN</option>
+        <option value="PASSPORT">PASSPORT</option>
+        <option value="CARTE_RESIDENCE">CARTE_RESIDENCE</option>
+      </select>
+      <div
+        *ngIf="
+          memberForm.get('identityDocument')?.hasError('required') &&
+          memberForm.get('identityDocument')?.touched
+        "
+        class="text-gray-900 p-1 bg-red-500 text-xs mt-1 rounded"
+      >
+        Identity Document is required.
+      </div>
+    </div>
+
+    <div class="mt-12 md:mt-4">
+      <button
+        [disabled]="memberForm.invalid"
+        class="w-full border-black to-white rounded-md px-4 pt-2 pb-2 bg-aftasColor text-gray-900 text-xl"
+      >
+        Create
+      </button>
+    </div>
+  </form>
+
+  <div
+    *ngIf="errorMessages.length !== 0"
+    class="bg-red-500 text-gray-900 mt-5 rounded p-2 font-light w-full md:w-2/4 mx-auto"
+  >
+    <p *ngFor="let message of errorMessages">{{ message }}</p>
+  </div>
+
+  <div class="p-10"></div>
+</section>
