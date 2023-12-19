@@ -32,7 +32,6 @@ export class CompetitionCreateComponent {
     this.errorMessages = []
     const formattedDate = this.datePipe.transform(this.competitionForm.get('date')?.value, "yyyy-MM-dd");
     const competitionFormWithFormattedDate = {...this.competitionForm.value, date: formattedDate}
-    console.log(competitionFormWithFormattedDate)
     this.service.createCompetition(competitionFormWithFormattedDate).subscribe({
       next: competition => this.router.navigate(["/competition"]),
       error: err => {
@@ -42,7 +41,6 @@ export class CompetitionCreateComponent {
             this.errorMessages.push(errorMessage);
           });
         }
-        console.log(this.errorMessages);
       }
     });
   }

@@ -42,13 +42,6 @@ export class CompetitionComponent implements OnInit {
     this.loadMembers();
   }
 
-  onCompetitionChange() {
-    console.log('Selected Competition:', this.competitionCode);
-  }
-  onMemberChange() {
-    console.log('Selected Member num:', this.memberNum);
-  }
-
   loadCompetitions(): void {
     this.competitionService.getAllCompetitions().subscribe(
       (data) => {
@@ -73,8 +66,6 @@ export class CompetitionComponent implements OnInit {
   register() {
     this.errorMessages = []
     const rankingIdForm = {...this.rankingIdForm.value}
-    console.log(rankingIdForm)
-
     const rankingId: RankingId = {
       id: {
         memberNum: rankingIdForm.memberNum,
@@ -82,18 +73,19 @@ export class CompetitionComponent implements OnInit {
       },
     };
     this.competitionService.joinCompetition(rankingId).subscribe({
-      next: competition => {
-        console.log("wa33 competition" , competition);
-        
+      next: competition => {        
         this.router.navigate(["/competition"])},
       error: err => {
+        console.log("wa33", err);
+
         if (err.error && err.error.errors) {
           Object.keys(err.error.errors).forEach((key) => {
             const errorMessage = this.errorMessagesMapping[key] || err.error.errors[key];
             this.errorMessages.push(errorMessage);
           });
-        }
-        console.log(this.errorMessages);
+        }else if (err.error.errors) {
+          
+        } 
       }
     });
   }

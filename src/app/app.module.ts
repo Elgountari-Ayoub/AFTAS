@@ -11,6 +11,7 @@ import { CompetitionCreateComponent } from './components/competition-create/comp
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MembersComponent } from './components/members/members/members.component';
 import { MemberCreateComponent } from './components/members/member-create/member-create.component';
+import { HuntingsComponent } from './components/huntings/huntings/huntings.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { MemberCreateComponent } from './components/members/member-create/member
     CompetitionCreateComponent,
     MembersComponent,
     MemberCreateComponent,
+    HuntingsComponent,
   ],
   imports: [
     BrowserModule,
