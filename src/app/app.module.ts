@@ -29,7 +29,7 @@ import { HuntingsComponent } from './components/huntings/huntings/huntings.compo
     CommonModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
