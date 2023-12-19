@@ -4,9 +4,9 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Competition } from '../models/Competition';
 import { PaginationModel } from '../models/PaginationModel';
+import { Ranking } from '../models/Ranking';
+import { RankingId } from '../models/RankingId';
 
-interface RankingDTO {
-}
 
 @Injectable({
   providedIn: 'root'
@@ -36,8 +36,8 @@ export class CompetitionService {
     return this.http.delete<void>(`${this.baseUrl}/${code}`);
   }
 
-  getCompetitionMembers(code: string): Observable<RankingDTO> {
-    return this.http.get<RankingDTO>(`${this.baseUrl}/${code}/members`);
+  getCompetitionMembers(code: string): Observable<Ranking> {
+    return this.http.get<Ranking>(`${this.baseUrl}/${code}/members`);
   }
 
   getPassedCompetitions(): Observable<Competition[]> {
@@ -52,8 +52,9 @@ export class CompetitionService {
     return this.http.get<Competition[]>(`${this.baseUrl}/upcoming`);
   }
 
-  joinCompetition(rankingDTO: RankingDTO): Observable<void> {
-    return this.http.post<void>(`${this.baseUrl}/join`, rankingDTO).pipe(
+  joinCompetition(rankingId: RankingId): Observable<void> {
+    console.log("wa333", rankingId);
+    return this.http.post<void>(`${this.baseUrl}/join`, rankingId).pipe(
       catchError((error) => {
         console.error('Error joining competition:', error);
         throw error;

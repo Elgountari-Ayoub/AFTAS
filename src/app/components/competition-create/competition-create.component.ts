@@ -38,7 +38,6 @@ export class CompetitionCreateComponent {
       error: err => {
         if (err.error && err.error.errors) {
           Object.keys(err.error.errors).forEach((key) => {
-            // Check if the error key exists in the errorMessages mapping
             const errorMessage = this.errorMessagesMapping[key] || err.error.errors[key];
             this.errorMessages.push(errorMessage);
           });
@@ -48,7 +47,6 @@ export class CompetitionCreateComponent {
     });
   }
   
-  // Define a mapping for specific error messages
   errorMessagesMapping: { [key: string]: string } = {
   };
 }
