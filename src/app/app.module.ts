@@ -9,6 +9,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { CompetitionComponent } from './components/competition/competition.component';
 import { CompetitionCreateComponent } from './components/competition-create/competition-create.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MembersComponent } from './components/members/members/members.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NavbarComponent,
     CompetitionComponent,
     CompetitionCreateComponent,
+    MembersComponent,
   ],
   imports: [
     BrowserModule,
