@@ -7,13 +7,14 @@ import { Member } from 'src/app/models/Member';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RankingId } from 'src/app/models/RankingId';
+import { Ranking } from 'src/app/models/Ranking';
 
 @Component({
   selector: 'app-competition',
   templateUrl: './competition.component.html',
   styleUrls: ['./competition.component.css'],
 })
-export class CompetitionComponent implements OnInit {
+export class CompetitionComponent implements OnInit   {
   competitions: Competition[] = [];
   members: Member[] = [];
   competitionCode: string | null = null;
@@ -67,17 +68,19 @@ export class CompetitionComponent implements OnInit {
     this.errorMessages = []
     const rankingIdForm = {...this.rankingIdForm.value}
     const rankingId: RankingId = {
-      id: {
         memberNum: rankingIdForm.memberNum,
         competitionCode: rankingIdForm.competitionCode,
-      },
     };
-    this.competitionService.joinCompetition(rankingId).subscribe({
+
+    const ranking: Ranking = {
+      id: rankingId,
+    }
+    console.log(ranking.id);
+    
+    this.competitionService.joinCompetition(ranking).subscribe({
       next: competition => {        
         this.router.navigate(["/competition"])},
       error: err => {
-        console.log("wa33", err);
-
         if (err.error && err.error.errors) {
           Object.keys(err.error.errors).forEach((key) => {
             const errorMessage = this.errorMessagesMapping[key] || err.error.errors[key];

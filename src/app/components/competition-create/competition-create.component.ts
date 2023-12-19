@@ -34,17 +34,20 @@ export class CompetitionCreateComponent {
     const competitionFormWithFormattedDate = {...this.competitionForm.value, date: formattedDate}
     this.service.createCompetition(competitionFormWithFormattedDate).subscribe({
       next: competition => this.router.navigate(["/competition"]),
-      error: err => {
-        if (err.error && err.error.errors) {
-          Object.keys(err.error.errors).forEach((key) => {
-            const errorMessage = this.errorMessagesMapping[key] || err.error.errors[key];
+      error: (error) => {
+        if (error.error.error != undefined) {
+          console.log('err', error.error.error);
+          this.errorMessages.push(error.error.error);
+        } else {
+          Object.keys(error.error).forEach((key) => {
+            const errorMessage =
+            this.errorMessagesMapping[key] || error.error[key];
             this.errorMessages.push(errorMessage);
-          });
+        });
         }
-      }
+      },
     });
   }
-  
-  errorMessagesMapping: { [key: string]: string } = {
-  };
+
+  errorMessagesMapping: { [key: string]: string } = {};
 }

@@ -33,5 +33,4 @@ export class MemberService {
     return this.http.delete<void>(`${this.baseUrl}/${num}`);
   }
 
-  // Add any other member-related methods as needed
 }

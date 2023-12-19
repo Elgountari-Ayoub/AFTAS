@@ -4,12 +4,14 @@ import { CompetitionComponent } from './components/competition/competition.compo
 import { CompetitionCreateComponent } from './components/competition-create/competition-create.component';
 import { MembersComponent } from './components/members/members/members.component';
 import { MemberCreateComponent } from './components/members/member-create/member-create.component';
+import { HuntingsComponent } from './components/huntings/huntings/huntings.component';
 
 const routes: Routes = [
   { path: 'competition', component:  CompetitionComponent},
   { path: 'competition-create', component:  CompetitionCreateComponent},
   { path: 'members', component:  MembersComponent},
   { path: 'member-create', component:  MemberCreateComponent},
+  { path: 'huntings', component:  HuntingsComponent},
   { path: '', redirectTo: '/', pathMatch: 'full' },
 ];
 

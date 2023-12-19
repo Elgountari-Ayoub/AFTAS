@@ -37,14 +37,16 @@ export class MemberCreateComponent implements OnInit {
 
     this.memberService.createMember(memberFormValue).subscribe({
       next: () => this.router.navigate(['/members']),
-      error: (err) => {
-        if (err.error && err.error.errors) {
-          Object.keys(err.error.errors).forEach((key) => {
-            // Check if the error key exists in the errorMessages mapping
+      error: (error) => {
+        if (error.error.error != undefined) {
+          console.log('err', error.error.error);
+          this.errorMessages.push(error.error.error);
+        } else {
+          Object.keys(error.error).forEach((key) => {
             const errorMessage =
-              this.errorMessagesMapping[key] || err.error.errors[key];
+            this.errorMessagesMapping[key] || error.error[key];
             this.errorMessages.push(errorMessage);
-          });
+        });
         }
       },
     });

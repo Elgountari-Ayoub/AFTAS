@@ -125,7 +125,7 @@
     *ngIf="errorMessages.length !== 0"
     class="bg-red-500 text-gray-900 mt-5 rounded p-2 font-light w-full md:w-2/4 mx-auto"
   >
-    <p *ngFor="let message of errorMessages">{{ message }}</p>
+    <p class="text-white" *ngFor="let message of errorMessages">{{ message }}</p>
   </div>
 
   <div class="p-10"></div>

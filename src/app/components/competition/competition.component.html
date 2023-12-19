@@ -28,6 +28,7 @@
         <th scope="col" class="px-6 py-3">Date</th>
         <th scope="col" class="px-6 py-3">Start Time</th>
         <th scope="col" class="px-6 py-3">End Time</th>
+        <th scope="col" class="px-6 py-3">Amount</th>
         <th scope="col" class="px-6 py-3">Participants</th>
         <!-- <th scope="col" class="px-6 py-3">Actions</th> -->
       </tr>
@@ -56,6 +57,9 @@
           {{ competition.endTime }}
         </td>
         <td class="px-6 py-4">
+          {{ competition.amount }}
+        </td>
+        <td class="px-6 py-4">
           {{ competition.numberOfParticipants }}
         </td>
         <!-- <td class="px-6 py-4">
@@ -69,8 +73,6 @@
     </tbody>
   </table>
 </div>
-
-<!-- Modal toggle -->
 
 <!-- Main modal -->
 <div

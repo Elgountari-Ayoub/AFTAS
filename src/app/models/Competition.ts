@@ -6,5 +6,6 @@ export interface Competition {
   date:string,
   startTime:string,
   endTime:string,
+  amount:number,
   numberOfParticipants:number,
 }
