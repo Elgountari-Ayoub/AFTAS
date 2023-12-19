@@ -1,0 +1,55 @@
+<section class="">
+    <form class="mx-auto mt-10 w-full md:w-2/4 p-5 border-2 bg-blur-bold rounded-md" [formGroup]="competitionForm" (ngSubmit)="onsubmit()">
+      <h1 class="text-3xl font-normal text-white text-center">Add Competition</h1>
+  
+      <div class="mt-12 md:mt-4">
+        <label class="font-light text-gray-200">Location</label>
+        <input formControlName="location" type="text" placeholder="Competition location" class="w-full placeholder:font-thin border focus:outline-none border-black to-white rounded-md px-4 pt-2 pb-2">
+        <div *ngIf="competitionForm.get('location')?.hasError('required') && competitionForm.get('location')?.touched" class="text-white p-1 bg-red-500 text-xs mt-1 rounded">Location is required.</div>
+        <div *ngIf="competitionForm.get('location')?.hasError('minlength') && competitionForm.get('location')?.touched" class="text-white p-1 bg-red-500 text-xs mt-1 rounded">Location must be at least 3 characters long.</div>
+        <div *ngIf="competitionForm.get('location')?.hasError('maxlength') && competitionForm.get('location')?.touched" class="text-white p-1 bg-red-500 text-xs mt-1 rounded">Location must not exceed 50 characters.</div>
+      </div>
+  
+      <div class="mt-12 md:mt-4">
+        <label class="font-light text-gray-200">Date</label>
+        <input formControlName="date" type="date" class="w-full placeholder:font-thin border focus:outline-none border-black to-white rounded-md px-4 pt-2 pb-2">
+        <div *ngIf="competitionForm.get('date')?.hasError('required') && competitionForm.get('date')?.touched" class="text-white p-1 bg-red-500 text-xs mt-1 rounded">Date is required.</div>
+      </div>
+  
+      <div class="mt-12 md:mt-4">
+        <label class="font-light text-gray-200">Start Time</label>
+        <input formControlName="startTime" type="time" class="w-full placeholder:font-thin border focus:outline-none border-black to-white rounded-md px-4 pt-2 pb-2">
+        <div *ngIf="competitionForm.get('startTime')?.hasError('required') && competitionForm.get('startTime')?.touched" class="text-white p-1 bg-red-500 text-xs mt-1 rounded">Start time is required.</div>
+      </div>
+  
+      <div class="mt-12 md:mt-4">
+        <label class="font-light text-gray-200">End Time</label>
+        <input formControlName="endTime" type="time" class="w-full placeholder:font-thin border focus:outline-none border-black to-white rounded-md px-4 pt-2 pb-2">
+        <div *ngIf="competitionForm.get('endTime')?.hasError('required') && competitionForm.get('endTime')?.touched" class="text-white p-1 bg-red-500 text-xs mt-1 rounded">End time is required.</div>
+      </div>
+  
+      <div class="mt-12 md:mt-4">
+        <label class="font-light text-gray-200">Amount</label>
+        <input formControlName="amount" type="number" placeholder="Competition price" class="w-full placeholder:font-thin border focus:outline-none border-black to-white rounded-md px-4 pt-2 pb-2">
+        <div *ngIf="competitionForm.get('amount')?.hasError('required') && competitionForm.get('amount')?.touched" class="text-white p-1 bg-red-500 text-xs mt-1 rounded">Amount is required.</div>
+        <div *ngIf="competitionForm.get('amount')?.hasError('min') && competitionForm.get('amount')?.touched" class="text-white p-1 bg-red-500 text-xs mt-1 rounded">Amount must be greater than or equal to 0.</div>
+      </div>
+  
+      <div class="mt-12 md:mt-4">
+        <label class="font-light text-gray-200">Participants Number</label>
+        <input formControlName="numberOfParticipants" type="number" placeholder="Participants number" class="w-full placeholder:font-thin border focus:outline-none border-black to-white rounded-md px-4 pt-2 pb-2">
+        <div *ngIf="competitionForm.get('numberOfParticipants')?.hasError('required') && competitionForm.get('numberOfParticipants')?.touched" class="text-white p-1 bg-red-500 text-xs mt-1 rounded">Participants number is required.</div>
+        <div *ngIf="competitionForm.get('numberOfParticipants')?.hasError('min') && competitionForm.get('numberOfParticipants')?.touched" class="text-white p-1 bg-red-500 text-xs mt-1 rounded">Participants number must be greater than or equal to 1.</div>
+        <div *ngIf="competitionForm.get('numberOfParticipants')?.hasError('max') && competitionForm.get('numberOfParticipants')?.touched" class="text-white p-1 bg-red-500 text-xs mt-1 rounded">Participants number must not exceed 100.</div>
+      </div>
+  
+      <div class="mt-12 md:mt-4">
+        <button [disabled]="competitionForm.invalid" class="w-full border-black to-white rounded-md px-4 pt-2 pb-2 bg-violet-400 text-white text-xl">Create</button>
+      </div>
+    </form>
+    <div *ngIf="errorMessages.length != 0" class="bg-red-500 text-white mt-5 rounded p-2 font-light w-full md:w-2/4 mx-auto">
+      <p *ngFor="let message of errorMessages">{{ message }}</p>
+    </div>
+    <div class="p-10"></div>
+  </section>
+  

@@ -5,26 +5,27 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/includes/navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { CompetitionComponent } from './components/competition/competition.component';
-import { CompetitionCreateComponent } from './components/comptition/competition-create/competition-create.component';
-// import { CompetitionComponent } from './components/competition/competition.component';
-// import CompetitionC
+import { CompetitionCreateComponent } from './components/competition-create/competition-create.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     CompetitionComponent,
-    CompetitionCreateComponent
+    CompetitionCreateComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    CommonModule,
     HttpClientModule,
-    CommonModule
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
