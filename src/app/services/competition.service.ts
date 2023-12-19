@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Competition } from '../models/Competition';
+import { PaginationModel } from '../models/PaginationModel';
 
 interface RankingDTO {
 }
@@ -15,8 +16,8 @@ export class CompetitionService {
 
   constructor(private http: HttpClient) { }
 
-  getAllCompetitions(): Observable<Competition[]> {
-    return this.http.get<Competition[]>(`${this.baseUrl}`);
+  getAllCompetitions(): Observable<PaginationModel<Competition>> {
+    return this.http.get<PaginationModel<Competition>>(`${this.baseUrl}`);
   }
 
   getCompetitionByCode(code: string): Observable<Competition> {

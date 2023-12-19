@@ -1,1 +1,54 @@
-<p>competition works!</p>
+
+<button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Create</button>
+<div class="relative overflow-x-auto">
+  <table
+    class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+  >
+    <thead
+      class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+    >
+      <tr>
+        <th scope="col" class="px-6 py-3">Competition Code</th>
+        <th scope="col" class="px-6 py-3">Location</th>
+        <th scope="col" class="px-6 py-3">Date</th>
+        <th scope="col" class="px-6 py-3">Start Time</th>
+        <th scope="col" class="px-6 py-3">End Time</th>
+        <th scope="col" class="px-6 py-3">Participants</th>
+        <th scope="col" class="px-6 py-3">
+          <span class="sr-only">Edit</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+        *ngFor="let competition of competitions"
+      >
+        <th
+          scope="row"
+          class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+        >
+          {{ competition.code }}
+        </th>
+        <td class="px-6 py-4">
+          {{ competition.location }}
+        </td>
+        <td class="px-6 py-4">
+          {{ competition.date }}
+        </td>
+        <td class="px-6 py-4">
+          {{ competition.startTime }}
+        </td>
+        <td class="px-6 py-4">
+          {{ competition.endTime }}
+        </td>
+        <td class="px-6 py-4">
+          {{ competition.numberOfParticipants }}
+        </td>
+        <td class="px-6 py-4 text-right">
+            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

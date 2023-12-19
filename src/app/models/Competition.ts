@@ -7,5 +7,4 @@ export interface Competition {
   startTime:string,
   endTime:string,
   numberOfParticipants:number,
-  rankings: Ranking[]
 }
