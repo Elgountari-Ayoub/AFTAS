@@ -40,6 +40,57 @@ export class CompetitionComponent implements OnInit {
     this.loadMembers();
   }
 
+  onDateChange(event: any): void {
+    const selectedValue = event.target.value;
+    console.log(selectedValue);
+    
+    if (selectedValue == 'passed') {
+      console.log("wa33");
+      
+      this.loadPassedCompetitions();
+    } else if (selectedValue == 'today') {
+      this.loadTodayCompetition();
+    } else if (selectedValue == 'upcoming') {
+      this.loadUpcomingCompetitions();
+    }else{
+      this.loadCompetitions();
+    }
+  }
+
+  loadPassedCompetitions(): void{
+    this.competitionService.getPassedCompetitions().subscribe(
+      (data) => {
+        this.competitions = data.content;
+      },
+      (error) => {
+        console.error('Error loading competitions:', error);
+      }
+    );
+  }
+
+  loadTodayCompetition():void {
+    this.competitionService.getTodayCompetition().subscribe(
+      (data) => {
+        this.competitions = [data];
+      },
+      (error) => {
+        console.error('Error loading competitions:', error);
+      }
+    );
+  }
+
+
+  loadUpcomingCompetitions(): void{
+    this.competitionService.getUpcomingCompetitions().subscribe(
+      (data) => {
+        this.competitions = data.content;
+      },
+      (error) => {
+        console.error('Error loading competitions:', error);
+      }
+    );
+  }
+
   loadCompetitions(): void {
     this.competitionService.getAllCompetitions().subscribe(
       (data) => {
@@ -73,8 +124,8 @@ export class CompetitionComponent implements OnInit {
       id: rankingId,
       member: null,
       competition: null,
-      rank:0,
-      score:0
+      rank: 0,
+      score: 0,
     };
 
     this.competitionService.joinCompetition(ranking).subscribe({

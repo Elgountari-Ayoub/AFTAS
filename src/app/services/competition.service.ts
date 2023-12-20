@@ -41,16 +41,16 @@ export class CompetitionService {
     return this.http.get<CompetitionRankings>(`${this.baseUrl}/${code}/members`);
   }
 
-  getPassedCompetitions(): Observable<Competition[]> {
-    return this.http.get<Competition[]>(`${this.baseUrl}/passed`);
+  getPassedCompetitions():  Observable<PaginationModel<Competition>> {
+    return this.http.get<PaginationModel<Competition>>(`${this.baseUrl}/passed`);
   }
 
   getTodayCompetition(): Observable<Competition> {
     return this.http.get<Competition>(`${this.baseUrl}/today`);
   }
 
-  getUpcomingCompetitions(): Observable<Competition[]> {
-    return this.http.get<Competition[]>(`${this.baseUrl}/upcoming`);
+  getUpcomingCompetitions(): Observable<PaginationModel<Competition>> {
+    return this.http.get<PaginationModel<Competition>>(`${this.baseUrl}/upcoming`);
   }
 
   joinCompetition(ranking: Ranking): Observable<void> {

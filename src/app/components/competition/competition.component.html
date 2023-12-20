@@ -6,6 +6,19 @@
   Create
 </button>
 
+
+<select
+  formControlName="identityDocument"
+  class="placeholder:font-thin border focus:outline-none border-black to-white rounded-md px-4 pt-2 pb-2 mx-4"
+  (change)="onDateChange($event)"
+>
+  <option value="" selected>All</option>
+  <option value="passed">Passed</option>
+  <option value="today">Today</option>
+  <option value="upcoming">UpComing</option>
+</select>
+
+
 <button
   data-modal-target="crud-modal-1"
   data-modal-toggle="crud-modal-1"
@@ -108,7 +121,11 @@
       </div>
 
       <!-- Modal body -->
-      <form class="p-4 md:p-5" [formGroup]="rankingIdForm" (ngSubmit)="register()">
+      <form
+        class="p-4 md:p-5"
+        [formGroup]="rankingIdForm"
+        (ngSubmit)="register()"
+      >
         <div class="grid gap-4 mb-4 grid-cols-2">
           <!-- Competition Select -->
           <div class="col-span-2 sm:col-span-1">
@@ -162,11 +179,13 @@
         </button>
       </form>
       <div
-      *ngIf="errorMessages.length != 0"
-      class="bg-red-500 text-gray-900 mt-5 rounded p-2 font-light w-full mx-auto"
-    >
-      <p *ngFor="let message of errorMessages" class="text-white">{{ message }}</p>
-    </div>
+        *ngIf="errorMessages.length != 0"
+        class="bg-red-500 text-gray-900 mt-5 rounded p-2 font-light w-full mx-auto"
+      >
+        <p *ngFor="let message of errorMessages" class="text-white">
+          {{ message }}
+        </p>
+      </div>
     </div>
   </div>
 </div>
