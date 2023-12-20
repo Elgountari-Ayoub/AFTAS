@@ -1,9 +1,9 @@
 export interface Member {
-    num: number,
-    name: string,
-    familyName: string,
-    accessionDate: string,
-    nationality: string,
-    identityNumber: string,
+    num?: number | null,
+    name: string | null,
+    familyName: string | null,
+    accessionDate: string | null,
+    nationality: string | null,
+    identityNumber: string | null,
     identityDocument: string
   }

@@ -1,34 +1,117 @@
-<ng-container *ngIf="competition">
-  <div class="container mx-auto mt-8 p-8 bg-white rounded-lg shadow-lg">
-    <h1 class="text-4xl font-bold mb-4">{{ competition.code }}</h1>
+<ng-container
+  *ngIf="competitionRankings && competitionRankings.rankings.content"
+>
+  <div class="container mx-auto bg-white rounded-lg shadow-lg">
+    <h1
+      class="text-4xl font-bold mb-4 bg-aftasColor py-8 text-center text-white rounded text-uppercase"
+    >
+      {{ competitionRankings.competition.location?.toUpperCase() }}
+    </h1>
 
-    <div class="grid grid-cols-2 gap-4">
-      <div>
-        <p class="text-gray-600 mb-2">Location: {{ competition.location }}</p>
-        <p class="text-gray-600 mb-2">Date: {{ competition.date }}</p>
-        <p class="text-gray-600 mb-2">
-          Start Time: {{ competition.startTime }}
-        </p>
-        <p class="text-gray-600 mb-2">End Time: {{ competition.endTime }}</p>
-      </div>
-
-      <div>
-        <p class="text-gray-600 mb-2">Amount: {{ competition.amount }}</p>
-        <p class="text-gray-600 mb-2">
-          Participants: {{ competition.numberOfParticipants }}
-        </p>
-      </div>
+    <div class="relative overflow-x-auto">
+      <table
+        class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+      >
+        <thead
+          class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+        >
+          <tr>
+            <th scope="col" class="px-6 py-3">Code</th>
+            <th scope="col" class="px-6 py-3">Date</th>
+            <th scope="col" class="px-6 py-3">Start Time</th>
+            <th scope="col" class="px-6 py-3">End Time</th>
+            <th scope="col" class="px-6 py-3">Amount</th>
+            <th scope="col" class="px-6 py-3">Participants</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <td class="px-6 py-4">
+              {{ competitionRankings.competition.code }}
+            </td>
+            <td class="px-6 py-4">
+              {{ competitionRankings.competition.date }}
+            </td>
+            <td class="px-6 py-4">
+              {{ competitionRankings.competition.startTime }}
+            </td>
+            <td class="px-6 py-4">
+              {{ competitionRankings.competition.endTime }}
+            </td>
+            <td class="px-6 py-4">
+              {{ competitionRankings.competition.amount }}
+            </td>
+            <td class="px-6 py-4">
+              {{ competitionRankings.competition.numberOfParticipants }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <!-- Add more styles or sections as needed -->
+    <p class="font-bold bg-aftasColor text-white mb-2 mt-4 p-2 d-block">
+      Members
+    </p>
 
-    <div class="mt-8">
-      <!-- Add additional information or actions here -->
-      <button
-        class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
+    <div class="relative overflow-x-auto">
+      <table
+        class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
       >
-        Register
-      </button>
+        <thead
+          class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+        >
+          <tr>
+            <th scope="col" class="px-6 py-3">Name</th>
+            <th scope="col" class="px-6 py-3">family Name</th>
+            <th scope="col" class="px-6 py-3">Nationality</th>
+            <th scope="col" class="px-6 py-3">Score</th>
+            <th scope="col" class="px-6 py-3">Rank</th>
+            <th scope="col" class="px-6 py-3">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+            *ngFor="let ranking of competitionRankings.rankings.content"
+          >
+            <td class="px-6 py-4">
+              {{ ranking.member?.name }}
+            </td>
+            <td class="px-6 py-4">
+              {{ ranking.member?.familyName }}
+            </td>
+            <td class="px-6 py-4">
+              {{ ranking.member?.nationality }}
+            </td>
+            <td class="px-6 py-4">
+              {{ ranking?.score }}
+            </td>
+            <td class="px-6 py-4">
+              {{ ranking?.rank }}
+            </td>
+            <td class="px-6 py-4 text-aftasColor">
+              <button
+                *ngIf="competitionRankings && competitionRankings.competition"
+                data-modal-target="crud-modal"
+                data-modal-toggle="crud-modal"
+                class="text-aftasColor hover:bg-aftasColor hover:text-white focus:ring-4 focus:outline-none focus:white font-medium rounded-lg text-sm px-4 py-2 text-center"
+                type="button"
+                (click)="
+                  setHuntingFormValues(
+                    competitionRankings.competition.code,
+                    ranking.member?.num
+                  )
+                "
+              >
+                Hunt
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
+
+  <!-- Main modal -->
+
 </ng-container>

@@ -1,4 +1,4 @@
 export interface RankingId {
-  memberNum?: number;
-  competitionCode?: string;
+  memberNum: number;
+  competitionCode: string;
 }

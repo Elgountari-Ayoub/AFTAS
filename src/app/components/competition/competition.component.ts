@@ -14,28 +14,25 @@ import { Ranking } from 'src/app/models/Ranking';
   templateUrl: './competition.component.html',
   styleUrls: ['./competition.component.css'],
 })
-export class CompetitionComponent implements OnInit   {
+export class CompetitionComponent implements OnInit {
   competitions: Competition[] = [];
   members: Member[] = [];
   competitionCode: string | null = null;
   memberNum: number | null = null;
 
   rankingIdForm: FormGroup;
-  errorMessages:string[] = []
-
+  errorMessages: string[] = [];
 
   constructor(
     private competitionService: CompetitionService,
     private memberService: MemberService,
     private formBuilder: FormBuilder,
-    private router:Router,
-
+    private router: Router
   ) {
     this.rankingIdForm = this.formBuilder.group({
       competitionCode: ['', Validators.required],
       memberNum: ['', [Validators.required]],
     });
-
   }
 
   ngOnInit(): void {
@@ -65,34 +62,39 @@ export class CompetitionComponent implements OnInit   {
     );
   }
   register() {
-    this.errorMessages = []
-    const rankingIdForm = {...this.rankingIdForm.value}
+    this.errorMessages = [];
+    const rankingIdForm = { ...this.rankingIdForm.value };
     const rankingId: RankingId = {
-        memberNum: rankingIdForm.memberNum,
-        competitionCode: rankingIdForm.competitionCode,
+      memberNum: rankingIdForm.memberNum,
+      competitionCode: rankingIdForm.competitionCode,
     };
 
     const ranking: Ranking = {
       id: rankingId,
-    }
-    console.log(ranking.id);
-    
+      member: null,
+      competition: null,
+      rank:0,
+      score:0
+    };
+
     this.competitionService.joinCompetition(ranking).subscribe({
-      next: competition => {        
-        this.router.navigate(["/competition"])},
-      error: err => {
-        if (err.error && err.error.errors) {
-          Object.keys(err.error.errors).forEach((key) => {
-            const errorMessage = this.errorMessagesMapping[key] || err.error.errors[key];
+      next: (competition) => {
+        this.router.navigate(['/competition']);
+      },
+      error: (error) => {
+        if (error.error.error != undefined) {
+          console.log('err', error.error.error);
+          this.errorMessages.push(error.error.error);
+        } else {
+          Object.keys(error.error).forEach((key) => {
+            const errorMessage =
+              this.errorMessagesMapping[key] || error.error[key];
             this.errorMessages.push(errorMessage);
           });
-        }else if (err.error.errors) {
-          
-        } 
-      }
+        }
+      },
     });
   }
-  errorMessagesMapping: { [key: string]: string } = {
-  };
-  
+
+  errorMessagesMapping: { [key: string]: string } = {};
 }

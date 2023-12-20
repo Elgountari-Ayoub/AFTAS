@@ -6,6 +6,7 @@ import { Competition } from '../models/Competition';
 import { PaginationModel } from '../models/PaginationModel';
 import { Ranking } from '../models/Ranking';
 import { RankingId } from '../models/RankingId';
+import { CompetitionRankings } from '../models/CompetitionRankings';
 
 
 @Injectable({
@@ -36,8 +37,8 @@ export class CompetitionService {
     return this.http.delete<void>(`${this.baseUrl}/${code}`);
   }
 
-  getCompetitionMembers(code: string): Observable<Ranking> {
-    return this.http.get<Ranking>(`${this.baseUrl}/${code}/members`);
+  getCompetitionMembers(code: string): Observable<CompetitionRankings> {
+    return this.http.get<CompetitionRankings>(`${this.baseUrl}/${code}/members`);
   }
 
   getPassedCompetitions(): Observable<Competition[]> {
