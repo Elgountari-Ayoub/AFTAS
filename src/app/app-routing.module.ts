@@ -5,14 +5,16 @@ import { CompetitionCreateComponent } from './components/competition-create/comp
 import { MembersComponent } from './components/members/members/members.component';
 import { MemberCreateComponent } from './components/members/member-create/member-create.component';
 import { HuntingsComponent } from './components/huntings/huntings/huntings.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
+  // { path: '', component:  HomeComponent},
   { path: 'competition', component:  CompetitionComponent},
   { path: 'competition-create', component:  CompetitionCreateComponent},
   { path: 'members', component:  MembersComponent},
   { path: 'member-create', component:  MemberCreateComponent},
   { path: 'huntings', component:  HuntingsComponent},
-  { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: '', redirectTo: '/competition', pathMatch: 'full' },
 ];
 
 @NgModule({

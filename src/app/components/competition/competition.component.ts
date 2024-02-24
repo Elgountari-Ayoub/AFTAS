@@ -20,8 +20,10 @@ export class CompetitionComponent implements OnInit {
   competitionCode: string | null = null;
   memberNum: number | null = null;
 
-  rankingIdForm: FormGroup;
+  rankingIdForm!: FormGroup;
   errorMessages: string[] = [];
+
+
 
   constructor(
     private competitionService: CompetitionService,
@@ -43,21 +45,21 @@ export class CompetitionComponent implements OnInit {
   onDateChange(event: any): void {
     const selectedValue = event.target.value;
     console.log(selectedValue);
-    
+
     if (selectedValue == 'passed') {
       console.log("wa33");
-      
+
       this.loadPassedCompetitions();
     } else if (selectedValue == 'today') {
       this.loadTodayCompetition();
     } else if (selectedValue == 'upcoming') {
       this.loadUpcomingCompetitions();
-    }else{
+    } else {
       this.loadCompetitions();
     }
   }
 
-  loadPassedCompetitions(): void{
+  loadPassedCompetitions(): void {
     this.competitionService.getPassedCompetitions().subscribe(
       (data) => {
         this.competitions = data.content;
@@ -68,7 +70,7 @@ export class CompetitionComponent implements OnInit {
     );
   }
 
-  loadTodayCompetition():void {
+  loadTodayCompetition(): void {
     this.competitionService.getTodayCompetition().subscribe(
       (data) => {
         this.competitions = [data];
@@ -80,7 +82,7 @@ export class CompetitionComponent implements OnInit {
   }
 
 
-  loadUpcomingCompetitions(): void{
+  loadUpcomingCompetitions(): void {
     this.competitionService.getUpcomingCompetitions().subscribe(
       (data) => {
         this.competitions = data.content;
@@ -148,4 +150,32 @@ export class CompetitionComponent implements OnInit {
   }
 
   errorMessagesMapping: { [key: string]: string } = {};
+
+
+
+  showMemberModal() {
+    let membermodal = document.getElementById('memberModal');
+    if (membermodal != null) {
+      membermodal.classList.remove('hidden');
+      setTimeout(() => {
+        if (membermodal != null) {
+          // membermodal.classList.remove('opacity-0');
+        }
+      }, 20);
+    }
+  }
+
+  hideMemberModal() {
+    let membermodal = document.getElementById('memberModal');
+    if (membermodal != null) {
+
+      // membermodal.classList.add('opacity-0');
+      setTimeout(() => {
+        if (membermodal != null) {
+
+          membermodal.classList.add('hidden');
+        }
+      }, 500);
+    }
+  }
 }

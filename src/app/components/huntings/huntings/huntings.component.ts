@@ -56,6 +56,8 @@ export class HuntingsComponent implements OnInit {
     if (competitionCode !== null && memberNum !== null) {
       this.competitionCode = competitionCode;
       this.memberNum = memberNum;
+
+      this.showHuntingModal();
     }
   }
 
@@ -107,19 +109,6 @@ export class HuntingsComponent implements OnInit {
     );
   }
 
-  loadMembers(): void {
-    this.memberService.getAllMembers().subscribe(
-      (data) => {
-        this.members = data.content;
-      },
-      (error) => {
-        console.error('Error loading members:', error);
-      }
-    );
-  }
-
-
-
   onHunt() {
     this.errorMessages = []
     const huntingFormValue = {...this.huntingForm.value}
@@ -165,4 +154,32 @@ export class HuntingsComponent implements OnInit {
   }
 
   errorMessagesMapping: { [key: string]: string } = {};
+
+
+
+  showHuntingModal() {
+    let huntingmodal = document.getElementById('huntingModal');
+    if (huntingmodal != null) {
+      huntingmodal.classList.remove('hidden');
+      setTimeout(() => {
+        if (huntingmodal != null) {
+          // huntingmodal.classList.remove('opacity-0');
+        }
+      }, 20);
+    }
+  }
+
+  hideHuntingModal() {
+    let huntingmodal = document.getElementById('huntingModal');
+    if (huntingmodal != null) {
+
+      // huntingmodal.classList.add('opacity-0');
+      setTimeout(() => {
+        if (huntingmodal != null) {
+
+          huntingmodal.classList.add('hidden');
+        }
+      }, 500);
+    }
+  }
 }
