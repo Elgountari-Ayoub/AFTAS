@@ -12,6 +12,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MembersComponent } from './components/members/members/members.component';
 import { MemberCreateComponent } from './components/members/member-create/member-create.component';
 import { HuntingsComponent } from './components/huntings/huntings/huntings.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { SignupComponent } from './components/auth/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { HuntingsComponent } from './components/huntings/huntings/huntings.compo
     MembersComponent,
     MemberCreateComponent,
     HuntingsComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
