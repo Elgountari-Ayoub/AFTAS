@@ -35,20 +35,21 @@ export class LoginComponent implements OnInit {
     this.authService.signIn(signInFormValue).subscribe({
       next: (respone) => {
         if (respone.token) this.authService.setAuthToken(respone.token);
-          const auth = this.authService.getAuthUser();
-          switch (auth?.role) {
-            case 'MEMBER':
-              this.router.navigate(['/agent-dash']);
-              break;
-            case 'JURY':
-              this.router.navigate(['/dashboard']);
-              break;
-            case 'MANAGER':
-              this.router.navigate(['/user-dash']);
-              break;
-            default:
-              this.router.navigate(['/']);
-          }
+        const auth = this.authService.getAuthUser();
+        alert(auth?.role)
+        switch (auth?.role) {
+          case 'MEMBER':
+            this.router.navigate(['/member-dash']);
+            break;
+          case 'JURY':
+            this.router.navigate(['/jury-dash']);
+            break;
+          case 'MANAGER':
+            this.router.navigate(['/manager-dash']);
+            break;
+          default:
+            this.router.navigate(['/']);
+        }
       },
       error: (error) => {
         console.log('ERROR: ', error);

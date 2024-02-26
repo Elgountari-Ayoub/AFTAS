@@ -9,23 +9,44 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { CompetitionComponent } from './components/competition/competition.component';
 import { CompetitionCreateComponent } from './components/competition-create/competition-create.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MembersComponent } from './components/members/members/members.component';
-import { MemberCreateComponent } from './components/members/member-create/member-create.component';
-import { HuntingsComponent } from './components/huntings/huntings/huntings.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
+import { DashNavbarComponent } from './components/includes/dash-navbar/dash-navbar.component';
+import { MemberCreateComponent } from './components/members/member-create/member-create.component';
+import { HuntingsComponent } from './components/huntings/huntings/huntings.component';
+import { HomeComponent } from './components/home/home.component';
+import { CompetitionsComponent } from './components/competitions/competitions.component';
+import { MembersComponent } from './components/members/members.component';
+import { ManagerDashComponent } from './components/manager-dash/manager-dash.component';
+import { DashSidebarComponent } from './components/includes/dash-sidebar/dash-sidebar.component';
+import { ManagerDashSidebarComponent } from './components/includes/manager-dash-sidebar/manager-dash-sidebar.component';
+import { ManagerCompetitionsComponent } from './components/manager-dash/manager-competitions/manager-competitions.component';
+import { ManagerMembersComponent } from './components/manager-dash/manager-members/manager-members.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+    DashSidebarComponent,
+    ManagerDashSidebarComponent,
+    DashNavbarComponent,
+
+    MembersComponent,
+
+    HomeComponent,
+    LoginComponent,
+    SignupComponent,
     CompetitionComponent,
     CompetitionCreateComponent,
-    MembersComponent,
     MemberCreateComponent,
     HuntingsComponent,
-    LoginComponent,
-    SignupComponent
+
+
+    CompetitionsComponent,
+    MembersComponent,
+    ManagerDashComponent,
+    ManagerCompetitionsComponent,
+    ManagerMembersComponent,
   ],
   imports: [
     BrowserModule,

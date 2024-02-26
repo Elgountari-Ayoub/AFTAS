@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators } from "@angular/forms";
-import {CompetitionService} from "../../services/competition.service";
-import {Router} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { CompetitionService } from "../../services/competition.service";
+import { Router } from "@angular/router";
 import { DatePipe } from '@angular/common';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-competition-create',
@@ -11,14 +12,16 @@ import { DatePipe } from '@angular/common';
 })
 export class CompetitionCreateComponent {
   competitionForm: FormGroup
-  errorMessages:string[] = []
+  errorMessages: string[] = []
   constructor(
-    private formBuilder:FormBuilder,
-    private service:CompetitionService,
-    private router:Router,
-    private datePipe:DatePipe
+    private formBuilder: FormBuilder,
+    private service: CompetitionService,
+    private router: Router,
+    private datePipe: DatePipe,
+    
   ) {
     this.competitionForm = this.formBuilder.group({
+
       location: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
       date: ['', Validators.required],
       startTime: ['', Validators.required],
@@ -31,9 +34,11 @@ export class CompetitionCreateComponent {
   onsubmit() {
     this.errorMessages = []
     const formattedDate = this.datePipe.transform(this.competitionForm.get('date')?.value, "yyyy-MM-dd");
-    const competitionFormWithFormattedDate = {...this.competitionForm.value, date: formattedDate}
+    const competitionFormWithFormattedDate = { ...this.competitionForm.value, date: formattedDate }
     this.service.createCompetition(competitionFormWithFormattedDate).subscribe({
-      next: competition => this.router.navigate(["/competition"]),
+      next: competition => {
+        //this.router.navigate(["/competition"]) 
+      },
       error: (error) => {
         if (error.error.error != undefined) {
           console.log('err', error.error.error);
@@ -41,9 +46,9 @@ export class CompetitionCreateComponent {
         } else {
           Object.keys(error.error).forEach((key) => {
             const errorMessage =
-            this.errorMessagesMapping[key] || error.error[key];
+              this.errorMessagesMapping[key] || error.error[key];
             this.errorMessages.push(errorMessage);
-        });
+          });
         }
       },
     });

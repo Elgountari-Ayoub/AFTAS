@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Competition } from 'src/app/models/Competition';
 import { CompetitionService } from 'src/app/services/competition.service';
 import { MemberService } from 'src/app/services/member.service';
@@ -10,11 +9,11 @@ import { RankingId } from 'src/app/models/RankingId';
 import { Ranking } from 'src/app/models/Ranking';
 
 @Component({
-  selector: 'app-competition',
-  templateUrl: './competition.component.html',
-  styleUrls: ['./competition.component.css'],
+  selector: 'app-manager-competitions',
+  templateUrl: './manager-competitions.component.html',
+  styleUrl: './manager-competitions.component.css'
 })
-export class CompetitionComponent implements OnInit {
+export class ManagerCompetitionsComponent {
   competitions: Competition[] = [];
   members: Member[] = [];
   competitionCode: string | null = null;
@@ -22,7 +21,6 @@ export class CompetitionComponent implements OnInit {
 
   rankingIdForm!: FormGroup;
   errorMessages: string[] = [];
-
 
 
   constructor(
@@ -95,6 +93,7 @@ export class CompetitionComponent implements OnInit {
     this.competitionService.getAllCompetitions().subscribe(
       (data) => {
         this.competitions = data.content;
+        console.log(this.competitions);
       },
       (error) => {
         console.error('Error loading competitions:', error);
@@ -130,7 +129,7 @@ export class CompetitionComponent implements OnInit {
 
     this.competitionService.joinCompetition(ranking).subscribe({
       next: (competition) => {
-        this.router.navigate(['/competition']);
+        this.router.navigate(['/manager-dash/competition']);
       },
       error: (error) => {
         if (error.error.error != undefined) {

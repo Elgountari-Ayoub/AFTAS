@@ -1,132 +1,152 @@
-<section class="">
-  <form
-    class="mx-auto w-full md:w-2/4 p-5 border-2 bg-blur-bold rounded-md w-full"
-    [formGroup]="memberForm"
-    (ngSubmit)="onSubmit()"
-  >
-    <h1 class="text-3xl font-normal text-gray-900 text-center">
-      Create a Member
-    </h1>
+<section class="bg-gray-50 dark:bg-gray-900 mt-16">
+    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
+        <div
+            class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                <h1
+                    class="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                    Create new user
+                </h1>
+                <form class="space-y-4 md:space-y-6" [formGroup]="memberForm" (ngSubmit)="onSubmit()">
 
-    <!-- Name -->
-    <div class="mt-12 md:mt-4">
-      <label class="font-light text-black">Name</label>
-      <input
-        formControlName="name"
-        type="text"
-        placeholder="Member name"
-        class="w-full placeholder:font-thin border focus:outline-none border-black to-white rounded-md px-4 pt-2 pb-2"
-      />
-      <div
-        *ngIf="
-          memberForm.get('name')?.hasError('required') &&
-          memberForm.get('name')?.touched
-        "
-        class="text-gray-900 p-1 bg-red-500 text-xs mt-1 rounded"
-      >
-        Name is required.
-      </div>
+                    <!-- First Name -->
+                    <div class="mt-12 md:mt-4">
+                        <label for="name" class="block mb-2 text-sm font-medium to-white w-full">First Name</label>
+                        <input formControlName="name" type="text" name="name" id="name" placeholder="Ayoub Elgountari"
+                            class="bg-gray-50 border border-gray-300 to-white sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                        <div *ngIf="
+                memberForm.get('name')?.hasError('required') &&
+                memberForm.get('name')?.touched
+              " class="text-gray-100 p-1 bg-red-500 text-xs mt-1 rounded">
+                            Name is required.
+                        </div>
+                        <div *ngIf="
+                memberForm.get('name')?.hasError('pattern') &&
+                memberForm.get('name')?.touched
+              " class="text-gray-100 p-1 bg-red-500 text-xs mt-1 rounded">
+                            Name cannot be blank.
+                        </div>
+                    </div>
+
+
+                    <!-- Family Name -->
+                    <div class="mt-12 md:mt-4">
+                        <label class="font-light text-black">Family Name</label>
+                        <input formControlName="familyName" type="text" placeholder="Member family name"
+                            class="w-full placeholder:font-thin border focus:outline-none border-gray-300 to-white rounded-md px-4 pt-2 pb-2" />
+                        <div *ngIf="
+            memberForm.get('familyName')?.hasError('required') &&
+            memberForm.get('familyName')?.touched
+          " class="to-white p-1 bg-red-500 text-xs mt-1 rounded">
+                            Family Name is required.
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="mt-12 md:mt-4">
+                        <label for="email" class="font-light text-black">Email
+                            <span class="ml-auto text-red-500 font-bold">*</span></label>
+                        <input formControlName="email" type="email" name="email" id="email"
+                            class="bg-gray-50 border border-gray-300 to-white sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="elgountariayoub22@gmail.com" />
+                        <div *ngIf="
+                memberForm.get('email')?.hasError('required') &&
+                memberForm.get('email')?.touched
+              " class="text-gray-100 p-1 bg-red-500 text-xs mt-1 rounded">
+                            Email is required.
+                        </div>
+                        <div *ngIf="
+                memberForm.get('email')?.hasError('pattern') &&
+                memberForm.get('email')?.touched
+              " class="text-gray-100 p-1 bg-red-500 text-xs mt-1 rounded">
+                            Please enter a valid email address.
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="mt-12 md:mt-4">
+                        <label for="password" class="font-light text-black">Password
+                            <span class="ml-auto text-red-500 font-bold">*</span></label>
+                        <input formControlName="password" type="password" name="password" id="password"
+                            placeholder="••••••••"
+                            class="bg-gray-50 border border-gray-300 to-white sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                        <!-- Password Validation -->
+                        <div *ngIf="
+                memberForm.get('password')?.hasError('required') &&
+                memberForm.get('password')?.touched
+              " class="text-gray-100 p-1 bg-red-500 text-xs mt-1 rounded">
+                            Password is required.
+                        </div>
+                        <div *ngIf="
+                memberForm.get('password')?.hasError('pattern') &&
+                memberForm.get('password')?.touched
+              " class="text-gray-100 p-1 bg-red-500 text-xs mt-1 rounded">
+                            Password cannot be blank.
+                        </div>
+                    </div>
+
+                    <!-- Nationality -->
+                    <div class="mt-12 md:mt-4">
+                        <label class="font-light text-black">Nationality</label>
+                        <input formControlName="nationality" type="text" placeholder="Member nationality"
+                            class="w-full placeholder:font-thin border focus:outline-none border-gray-300 to-white rounded-md px-4 pt-2 pb-2" />
+                        <div *ngIf="
+            memberForm.get('nationality')?.hasError('required') &&
+            memberForm.get('nationality')?.touched
+          " class="to-white p-1 bg-red-500 text-xs mt-1 rounded">
+                            Nationality is required.
+                        </div>
+                    </div>
+
+                    <!-- Identity Number -->
+                    <div class="mt-12 md:mt-4">
+                        <label class="font-light text-black">Identity Number</label>
+                        <input formControlName="identityNumber" type="text" placeholder="Member identity number"
+                            class="w-full placeholder:font-thin border focus:outline-none border-gray-300 to-white rounded-md px-4 pt-2 pb-2" />
+                        <div *ngIf="
+            memberForm.get('identityNumber')?.hasError('required') &&
+            memberForm.get('identityNumber')?.touched
+          " class="to-white p-1 bg-red-500 text-xs mt-1 rounded">
+                            Identity Number is required.
+                        </div>
+                    </div>
+
+                    <!-- Identity Document -->
+                    <div class="mt-12 md:mt-4">
+                        <label class="font-light text-black">Identity Document</label>
+                        <select formControlName="identityDocument"
+                            class="w-full placeholder:font-thin border focus:outline-none border-gray-300 to-white rounded-md px-4 pt-2 pb-2">
+                            <option value="" disabled selected>Select Identity Document</option>
+                            <option value="CIN">CIN</option>
+                            <option value="PASSPORT">PASSPORT</option>
+                            <option value="CARTE_RESIDENCE">CARTE_RESIDENCE</option>
+                        </select>
+                        <div *ngIf="
+            memberForm.get('identityDocument')?.hasError('required') &&
+            memberForm.get('identityDocument')?.touched
+          " class="to-white p-1 bg-red-500 text-xs mt-1 rounded">
+                            Identity Document is required.
+                        </div>
+                    </div>
+                    <label>
+                        <input type="radio" formControlName="role" value="MEMBER"> Member
+                    </label>
+                    <label>
+                        <input type="radio" formControlName="role" value="JURY"> Jury
+                    </label>
+                    <div class="mt-12 md:mt-4">
+                        <button [disabled]="memberForm.invalid"
+                            class="w-full border-gray-300 to-white rounded-md px-4 pt-2 pb-2 bg-aftasColor text-white text-xl">
+                            Create
+                        </button>
+                    </div>
+                </form>
+
+                <div *ngIf="errorMessages.length !== 0"
+                    class="bg-red-500 to-white mt-5 rounded p-2 font-light w-full md:w-2/4 mx-auto">
+                    <p class="text-white" *ngFor="let message of errorMessages">{{ message }}</p>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <!-- Family Name -->
-    <div class="mt-12 md:mt-4">
-      <label class="font-light text-black">Family Name</label>
-      <input
-        formControlName="familyName"
-        type="text"
-        placeholder="Member family name"
-        class="w-full placeholder:font-thin border focus:outline-none border-black to-white rounded-md px-4 pt-2 pb-2"
-      />
-      <div
-        *ngIf="
-          memberForm.get('familyName')?.hasError('required') &&
-          memberForm.get('familyName')?.touched
-        "
-        class="text-gray-900 p-1 bg-red-500 text-xs mt-1 rounded"
-      >
-        Family Name is required.
-      </div>
-    </div>
-
-    <!-- Nationality -->
-    <div class="mt-12 md:mt-4">
-      <label class="font-light text-black">Nationality</label>
-      <input
-        formControlName="nationality"
-        type="text"
-        placeholder="Member nationality"
-        class="w-full placeholder:font-thin border focus:outline-none border-black to-white rounded-md px-4 pt-2 pb-2"
-      />
-      <div
-        *ngIf="
-          memberForm.get('nationality')?.hasError('required') &&
-          memberForm.get('nationality')?.touched
-        "
-        class="text-gray-900 p-1 bg-red-500 text-xs mt-1 rounded"
-      >
-        Nationality is required.
-      </div>
-    </div>
-
-    <!-- Identity Number -->
-    <div class="mt-12 md:mt-4">
-      <label class="font-light text-black">Identity Number</label>
-      <input
-        formControlName="identityNumber"
-        type="text"
-        placeholder="Member identity number"
-        class="w-full placeholder:font-thin border focus:outline-none border-black to-white rounded-md px-4 pt-2 pb-2"
-      />
-      <div
-        *ngIf="
-          memberForm.get('identityNumber')?.hasError('required') &&
-          memberForm.get('identityNumber')?.touched
-        "
-        class="text-gray-900 p-1 bg-red-500 text-xs mt-1 rounded"
-      >
-        Identity Number is required.
-      </div>
-    </div>
-
-    <!-- Identity Document -->
-    <div class="mt-12 md:mt-4">
-      <label class="font-light text-black">Identity Document</label>
-      <select
-        formControlName="identityDocument"
-        class="w-full placeholder:font-thin border focus:outline-none border-black to-white rounded-md px-4 pt-2 pb-2"
-      >
-        <option value="" disabled selected>Select Identity Document</option>
-        <option value="CIN">CIN</option>
-        <option value="PASSPORT">PASSPORT</option>
-        <option value="CARTE_RESIDENCE">CARTE_RESIDENCE</option>
-      </select>
-      <div
-        *ngIf="
-          memberForm.get('identityDocument')?.hasError('required') &&
-          memberForm.get('identityDocument')?.touched
-        "
-        class="text-gray-900 p-1 bg-red-500 text-xs mt-1 rounded"
-      >
-        Identity Document is required.
-      </div>
-    </div>
-
-    <div class="mt-12 md:mt-4">
-      <button
-        [disabled]="memberForm.invalid"
-        class="w-full border-black to-white rounded-md px-4 pt-2 pb-2 bg-aftasColor text-gray-900 text-xl"
-      >
-        Create
-      </button>
-    </div>
-  </form>
-
-  <div
-    *ngIf="errorMessages.length !== 0"
-    class="bg-red-500 text-gray-900 mt-5 rounded p-2 font-light w-full md:w-2/4 mx-auto"
-  >
-    <p class="text-white" *ngFor="let message of errorMessages">{{ message }}</p>
-  </div>
-
-  <div class="p-10"></div>
 </section>

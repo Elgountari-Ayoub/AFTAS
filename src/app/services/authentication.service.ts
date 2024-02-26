@@ -41,13 +41,16 @@ export class AuthenticationService {
     const token = this.getAuthToken();
 
     if (!token) return null;
-
+    
     const auth: any = jwtDecode(token);
+    console.log(auth);
+    
     const authObj: Auth = {
       id: auth.id,
       name: auth.name,
       email: auth.sub,
       role: auth.role,
+      password: auth.password,
     };
     return authObj;
   }

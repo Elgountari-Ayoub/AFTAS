@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MemberCreateComponent } from './member-create.component';
+import { DashNavbarComponent } from './dash-navbar.component';
 
-describe('MemberCreateComponent', () => {
-  let component: MemberCreateComponent;
-  let fixture: ComponentFixture<MemberCreateComponent>;
+describe('DashNavbarComponent', () => {
+  let component: DashNavbarComponent;
+  let fixture: ComponentFixture<DashNavbarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MemberCreateComponent]
+      imports: [DashNavbarComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(MemberCreateComponent);
+    fixture = TestBed.createComponent(DashNavbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
