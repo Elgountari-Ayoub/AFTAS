@@ -17,48 +17,61 @@ import { JuryCompetitionsComponent } from './components/jury-dash/jury-competiti
 import { JuryDashComponent } from './components/jury-dash/jury-dash.component';
 import { JuryMembersComponent } from './components/jury-dash/jury-members/jury-members.component';
 import { JuryHuntingsComponent } from './components/jury-dash/jury-huntings/jury-huntings.component';
+import { MemberDashComponent } from './components/member-dash/member-dash.component';
+import { MemberCompetitionsComponent } from './components/member-dash/member-competitions/member-competitions.component';
+import { authGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'competition', component: CompetitionComponent },
+
+  // { path: 'competition', component: CompetitionComponent },
   { path: 'competition-create', component: CompetitionCreateComponent },
-  { path: 'members', component: MembersComponent },
+  // { path: 'members', component: MembersComponent },
   { path: 'member-create', component: MemberCreateComponent },
-  { path: 'huntings', component: HuntingsComponent },
+  // { path: 'huntings', component: HuntingsComponent },
   { path: 'home', component: HomeComponent },
 
-
   {
-    path: 'manager-dash', component: ManagerDashComponent, children: [
-      { path: 'competitions', component: ManagerCompetitionsComponent },
-      { path: 'members', component: ManagerMembersComponent },
-      { path: 'huntings', component: ManagerHuntingsComponent },
-      { path: 'users', component: ManagerUsersComponent },
+    path: 'manager-dash',
+    component: ManagerDashComponent,
+    children: [
+      { path: 'competitions', component: ManagerCompetitionsComponent, canActivate: [authGuard] },
+      { path: 'members', component: ManagerMembersComponent , canActivate: [authGuard]},
+      { path: 'huntings', component: ManagerHuntingsComponent , canActivate: [authGuard]},
+      { path: 'users', component: ManagerUsersComponent , canActivate: [authGuard]},
       { path: '', redirectTo: 'competitions', pathMatch: 'full' },
+    ],
 
-
-    ]
+    canActivate: [authGuard],
   },
 
   {
-    path: 'jury-dash', component: JuryDashComponent, children: [
-      { path: 'competitions', component: JuryCompetitionsComponent },
-      { path: 'members', component: JuryMembersComponent },
-      { path: 'huntings', component: JuryHuntingsComponent },
+    path: 'jury-dash',
+    component: JuryDashComponent,
+    children: [
+      { path: 'competitions', component: JuryCompetitionsComponent, canActivate: [authGuard],},
+      { path: 'members', component: JuryMembersComponent, canActivate: [authGuard], },
+      { path: 'huntings', component: JuryHuntingsComponent, canActivate: [authGuard],},
       { path: '', redirectTo: 'competitions', pathMatch: 'full' },
-
-
-    ]
+    ],
+    canActivate: [authGuard],
   },
-
-
+  {
+    path: 'member-dash',
+    component: MemberDashComponent,
+    children: [
+      { path: 'competitions', component: MemberCompetitionsComponent , canActivate: [authGuard],},
+      { path: '', redirectTo: 'competitions', pathMatch: 'full' },
+    ],
+    canActivate: [authGuard],
+  },
 
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

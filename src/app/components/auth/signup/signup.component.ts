@@ -48,6 +48,7 @@ export class SignupComponent implements OnInit {
               title: 'Not approved',
               text: "You don't have the access yet!",
             });
+            this.authService.clearAuthToken();
             this.router.navigate(['/home']);
           }
         },

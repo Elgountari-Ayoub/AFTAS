@@ -31,6 +31,7 @@ import { JuryHuntingsComponent } from './components/jury-dash/jury-huntings/jury
 import { JuryDashSidebarComponent } from './components/includes/jury-dash-sidebar/jury-dash-sidebar.component';
 import { MemberDashSidebarComponent } from './components/includes/member-dash-sidebar/member-dash-sidebar.component';
 import { MemberDashComponent } from './components/member-dash/member-dash.component';
+import { MemberCompetitionsComponent } from './components/member-dash/member-competitions/member-competitions.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { MemberDashComponent } from './components/member-dash/member-dash.compon
 
 
     MemberDashSidebarComponent,
-    MemberDashComponent
+    MemberDashComponent,
+    MemberCompetitionsComponent
 
   ],
   imports: [

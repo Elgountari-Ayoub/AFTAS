@@ -4,5 +4,6 @@ export interface Auth {
   email?: string | null;
   password?: string | null;
   role?: string | null;
+  isAccepted?: boolean
 
 }

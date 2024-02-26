@@ -19,6 +19,8 @@ export class HomeComponent {
   ) { }
   ngOnInit(): void {
     this.authUser = <Auth>this.authService.getAuthUser();
+    console.log(this.authUser);
+    
   }
 
 }

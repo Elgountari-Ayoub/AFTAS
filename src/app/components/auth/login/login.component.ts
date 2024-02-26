@@ -35,6 +35,8 @@ export class LoginComponent implements OnInit {
 
     this.authService.signIn(signInFormValue).subscribe({
       next: (respone) => {
+        debugger
+
         if (respone.token) this.authService.setAuthToken(respone.token);
         const auth = this.authService.getAuthUser();
         this.userService.getById(auth?.id).subscribe({
@@ -45,6 +47,7 @@ export class LoginComponent implements OnInit {
                 title: 'Not approved',
                 text: "You don't have the access yet!",
               });
+              this.authService.clearAuthToken();
               this.router.navigate(['/home']);
             }
           },
