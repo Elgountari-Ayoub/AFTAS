@@ -11,44 +11,6 @@ import { MemberService } from 'src/app/services/member.service';
   templateUrl: './manager-dash.component.html',
   styleUrl: './manager-dash.component.css'
 })
-export class ManagerDashComponent implements OnInit {
-  competitions: Competition[] = [];
-  members: Member[] = [];
-
-  constructor(
-    private competitionService: CompetitionService,
-    private memberService: MemberService,
-    private formBuilder: FormBuilder,
-    private router: Router
-  ){}
-
-  ngOnInit(): void {
-    this.loadCompetitions();
-    this.loadMembers();
-  }
-
-
-  // Competitions Section
-  loadCompetitions(): void {
-    this.competitionService.getAllCompetitions().subscribe(
-      (data) => {
-        this.competitions = data.content;
-      },
-      (error) => {
-        console.error('Error loading competitions:', error);
-      }
-    );
-  }
-
-  // Members Section
-  loadMembers(): void {
-    this.memberService.getAllMembers().subscribe(
-      (data) => {
-        this.members = data.content;
-      },
-      (error) => {
-        console.error('Error loading members:', error);
-      }
-    );
-  }
+export class ManagerDashComponent {
+  
 }

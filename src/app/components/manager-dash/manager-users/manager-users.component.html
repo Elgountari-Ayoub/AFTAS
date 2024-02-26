@@ -23,7 +23,6 @@
         <th scope="col" class="px-6 py-3">Name</th>
         <th scope="col" class="px-6 py-3">Email</th>
         <th scope="col" class="px-6 py-3">Role</th>
-        <th scope="col" class="px-6 py-3">Status</th>
         <th scope="col" class="px-6 py-3">Actions</th>
       </tr>
     </thead>
@@ -54,16 +53,13 @@
                     {{ member.identityDocument }}
                 </td>
                 <td class="px-6 py-4">
-                    {{ member.identityDocument }}
-                </td> -->
+                  {{ user.identityDocument }}
+              </td> -->
         <td class="px-6 py-4">
           {{ user.email }}
         </td>
         <td class="px-6 py-4">
           {{ user.role }}
-        </td>
-        <td class="px-6 py-4">
-          {{ user.isAccepted }}
         </td>
         <td
           *ngIf="user.isAccepted !== true; else accepted"

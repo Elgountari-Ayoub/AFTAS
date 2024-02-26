@@ -12,8 +12,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   signInForm: FormGroup;
   errorMessages: string[] = [];
@@ -21,7 +20,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthenticationService,
     private userService: UserService,
-    private router: Router,
+    private router: Router
   ) {
     this.signInForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.pattern(/^\S+@\S+\.\S+$/)]],
@@ -41,15 +40,14 @@ export class LoginComponent implements OnInit {
         this.userService.getById(auth?.id).subscribe({
           next: (fetchedUser) => {
             if (!fetchedUser.isAccepted) {
-                Swal.fire({
-                  icon: 'error',
-                  title: 'Not approved',
-                  text: 'You don\'t have the access yet!',
-                })
+              Swal.fire({
+                icon: 'warning',
+                title: 'Not approved',
+                text: "You don't have the access yet!",
+              });
               this.router.navigate(['/home']);
             }
-              
-          }
+          },
         });
         switch (auth?.role) {
           case 'MEMBER':
@@ -76,6 +74,4 @@ export class LoginComponent implements OnInit {
       },
     });
   }
-
-
 }

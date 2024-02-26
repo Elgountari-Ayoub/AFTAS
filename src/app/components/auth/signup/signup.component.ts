@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import Swal from 'sweetalert2';
 import { Auth } from 'src/app/models/Auth';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-signup',
@@ -21,13 +22,14 @@ export class SignupComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthenticationService,
+    private userService: UserService,
     private router: Router,
   ) {
     this.signUpForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.pattern(/\S+/)]],
       email: ['', [Validators.required, Validators.pattern(/^\S+@\S+\.\S+$/)]],
       password: ['', [Validators.required, Validators.pattern(/\S+/)]],
-      role: ['MEMBER'],
+      role: ['', [Validators.required]],
     });
   }
 
@@ -38,15 +40,27 @@ export class SignupComponent implements OnInit {
         if (response.token) {
           this.authService.setAuthToken(response.token);
           const auth = this.authService.getAuthUser();
+          this.userService.getById(auth?.id).subscribe({
+            next: (fetchedUser) => {
+          if (!fetchedUser.isAccepted) {
+            Swal.fire({
+              icon: 'warning',
+              title: 'Not approved',
+              text: "You don't have the access yet!",
+            });
+            this.router.navigate(['/home']);
+          }
+        },
+      });
           switch (auth?.role) {
             case 'MEMBER':
-              this.router.navigate(['/agent-dash']);
+              this.router.navigate(['/']);
               break;
             case 'JURY':
-              this.router.navigate(['/dashboard']);
+              this.router.navigate(['/jury-dash']);
               break;
             case 'MANAGER':
-              this.router.navigate(['/user-dash']);
+              this.router.navigate(['/manager-dash']);
               break;
             default:
               this.router.navigate(['/']);

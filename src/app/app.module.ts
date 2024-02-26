@@ -24,6 +24,13 @@ import { ManagerCompetitionsComponent } from './components/manager-dash/manager-
 import { ManagerMembersComponent } from './components/manager-dash/manager-members/manager-members.component';
 import { ManagerHuntingsComponent } from './components/manager-dash/manager-huntings/manager-huntings.component';
 import { ManagerUsersComponent } from './components/manager-dash/manager-users/manager-users.component';
+import { JuryDashComponent } from './components/jury-dash/jury-dash.component';
+import { JuryCompetitionsComponent } from './components/jury-dash/jury-competitions/jury-competitions.component';
+import { JuryMembersComponent } from './components/jury-dash/jury-members/jury-members.component';
+import { JuryHuntingsComponent } from './components/jury-dash/jury-huntings/jury-huntings.component';
+import { JuryDashSidebarComponent } from './components/includes/jury-dash-sidebar/jury-dash-sidebar.component';
+import { MemberDashSidebarComponent } from './components/includes/member-dash-sidebar/member-dash-sidebar.component';
+import { MemberDashComponent } from './components/member-dash/member-dash.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +59,17 @@ import { ManagerUsersComponent } from './components/manager-dash/manager-users/m
     ManagerMembersComponent,
     ManagerHuntingsComponent,
     ManagerUsersComponent,
+
+    JuryDashSidebarComponent,
+    JuryDashComponent,
+    JuryCompetitionsComponent,
+    JuryMembersComponent,
+    JuryHuntingsComponent,
+
+
+    MemberDashSidebarComponent,
+    MemberDashComponent
+
   ],
   imports: [
     BrowserModule,

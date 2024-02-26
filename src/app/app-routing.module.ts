@@ -13,6 +13,10 @@ import { ManagerCompetitionsComponent } from './components/manager-dash/manager-
 import { ManagerMembersComponent } from './components/manager-dash/manager-members/manager-members.component';
 import { ManagerHuntingsComponent } from './components/manager-dash/manager-huntings/manager-huntings.component';
 import { ManagerUsersComponent } from './components/manager-dash/manager-users/manager-users.component';
+import { JuryCompetitionsComponent } from './components/jury-dash/jury-competitions/jury-competitions.component';
+import { JuryDashComponent } from './components/jury-dash/jury-dash.component';
+import { JuryMembersComponent } from './components/jury-dash/jury-members/jury-members.component';
+import { JuryHuntingsComponent } from './components/jury-dash/jury-huntings/jury-huntings.component';
 
 const routes: Routes = [
   { path: 'signup', component: SignupComponent },
@@ -31,6 +35,17 @@ const routes: Routes = [
       { path: 'members', component: ManagerMembersComponent },
       { path: 'huntings', component: ManagerHuntingsComponent },
       { path: 'users', component: ManagerUsersComponent },
+      { path: '', redirectTo: 'competitions', pathMatch: 'full' },
+
+
+    ]
+  },
+
+  {
+    path: 'jury-dash', component: JuryDashComponent, children: [
+      { path: 'competitions', component: JuryCompetitionsComponent },
+      { path: 'members', component: JuryMembersComponent },
+      { path: 'huntings', component: JuryHuntingsComponent },
       { path: '', redirectTo: 'competitions', pathMatch: 'full' },
 
 
