@@ -22,6 +22,8 @@ import { DashSidebarComponent } from './components/includes/dash-sidebar/dash-si
 import { ManagerDashSidebarComponent } from './components/includes/manager-dash-sidebar/manager-dash-sidebar.component';
 import { ManagerCompetitionsComponent } from './components/manager-dash/manager-competitions/manager-competitions.component';
 import { ManagerMembersComponent } from './components/manager-dash/manager-members/manager-members.component';
+import { ManagerHuntingsComponent } from './components/manager-dash/manager-huntings/manager-huntings.component';
+import { ManagerUsersComponent } from './components/manager-dash/manager-users/manager-users.component';
 
 @NgModule({
   declarations: [
@@ -44,9 +46,12 @@ import { ManagerMembersComponent } from './components/manager-dash/manager-membe
 
     CompetitionsComponent,
     MembersComponent,
+
     ManagerDashComponent,
     ManagerCompetitionsComponent,
     ManagerMembersComponent,
+    ManagerHuntingsComponent,
+    ManagerUsersComponent,
   ],
   imports: [
     BrowserModule,

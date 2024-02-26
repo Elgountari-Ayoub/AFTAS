@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Competition } from 'src/app/models/Competition';
 import { CompetitionService } from 'src/app/services/competition.service';
 import { MemberService } from 'src/app/services/member.service';
 import { Member } from 'src/app/models/Member';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { RankingId } from 'src/app/models/RankingId';
 import { Ranking } from 'src/app/models/Ranking';
 import { CompetitionRankings } from 'src/app/models/CompetitionRankings';
 import { FishService } from 'src/app/services/fish.service';
@@ -15,11 +13,11 @@ import { HuntingService } from 'src/app/services/hunting.service';
 import { Hunting } from 'src/app/models/Hunting';
 
 @Component({
-  selector: 'app-huntings',
-  templateUrl: './huntings.component.html',
-  styleUrls: ['./huntings.component.css']
+  selector: 'app-manager-huntings',
+  templateUrl: './manager-huntings.component.html',
+  styleUrl: './manager-huntings.component.css'
 })
-export class HuntingsComponent implements OnInit {
+export class ManagerHuntingsComponent implements OnInit {
 
   competition: Competition | null = null;
   member: Member | null = null;
@@ -36,13 +34,13 @@ export class HuntingsComponent implements OnInit {
   fishes: Fish[] = [];
 
   huntingForm: FormGroup;
-  errorMessages:string[] = []
+  errorMessages: string[] = []
 
   constructor(
     private competitionService: CompetitionService,
     private memberService: MemberService,
     private formBuilder: FormBuilder,
-    private router:Router,
+    private router: Router,
     private fishService: FishService,
     private huntingService: HuntingService,
   ) {
@@ -52,16 +50,18 @@ export class HuntingsComponent implements OnInit {
     });
   }
 
-  setHuntingFormValues(competitionCode: string | null, memberId?: number | null): void{
+  setHuntingFormValues(competitionCode: string | null, memberId?: number | null): void {
     if (competitionCode !== null && memberId !== null) {
       this.competitionCode = competitionCode;
       this.memberId = memberId;
 
-      this.showHuntingModal();
+      alert(this.competitionCode+ ' / ' +this.memberId);
+
+      this.showHuntingModal(  );
     }
   }
 
-  clearHuntingFormValues(): void{
+  clearHuntingFormValues(): void {
     this.competitionCode = null;
     this.memberId = null;
 
@@ -78,7 +78,7 @@ export class HuntingsComponent implements OnInit {
       (data) => {
         this.competition = data;
         if (this.competition && this.competition.code) {
-        this.loadCompetitionMembers(this.competition.code)
+          this.loadCompetitionMembers(this.competition.code)
         }
       },
       (error) => {
@@ -111,43 +111,43 @@ export class HuntingsComponent implements OnInit {
 
   onHunt() {
     this.errorMessages = []
-    const huntingFormValue = {...this.huntingForm.value}
+    const huntingFormValue = { ...this.huntingForm.value }
     console.log(huntingFormValue.memberId);
 
-    const hunting: any = { 
+    const hunting: any = {
       fish: {
         id: huntingFormValue.fishId
       },
-      competition:{
-          code: this.competitionCode
+      competition: {
+        code: this.competitionCode
 
       },
-      member:{
+      member: {
         id: this.memberId,
       },
       numberOfFish: huntingFormValue.numberOfFish,
     };
-    
+
     this.huntingService.save(hunting).subscribe({
       next: (hunting) => {
         // console.log(hunting);
         this.clearHuntingFormValues();
-        this.router.navigate(["/huntings"])
+        this.router.navigate(["/manager-dash/huntings"])
         this.loadTodayCompetition();
         this.loadFishes();
       },
       error: (error) => {
         console.log(error);
-        
+
         if (error.error.error != undefined) {
           console.log('err', error.error.error);
           this.errorMessages.push(error.error.error);
         } else {
           Object.keys(error.error).forEach((key) => {
             const errorMessage =
-            this.errorMessagesMapping[key] || error.error[key];
+              this.errorMessagesMapping[key] || error.error[key];
             this.errorMessages.push(errorMessage);
-        });
+          });
         }
       },
     });
@@ -183,3 +183,4 @@ export class HuntingsComponent implements OnInit {
     }
   }
 }
+

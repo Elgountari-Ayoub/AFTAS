@@ -18,7 +18,7 @@ export class CompetitionComponent implements OnInit {
   competitions: Competition[] = [];
   members: Member[] = [];
   competitionCode: string | null = null;
-  memberNum: number | null = null;
+  memberId: number | null = null;
 
   rankingIdForm!: FormGroup;
   errorMessages: string[] = [];
@@ -33,7 +33,7 @@ export class CompetitionComponent implements OnInit {
   ) {
     this.rankingIdForm = this.formBuilder.group({
       competitionCode: ['', Validators.required],
-      memberNum: ['', [Validators.required]],
+      memberId: ['', [Validators.required]],
     });
   }
 
@@ -116,16 +116,12 @@ export class CompetitionComponent implements OnInit {
     this.errorMessages = [];
     const rankingIdForm = { ...this.rankingIdForm.value };
     const rankingId: RankingId = {
-      memberNum: rankingIdForm.memberNum,
+      memberId: rankingIdForm.memberId,
       competitionCode: rankingIdForm.competitionCode,
     };
 
     const ranking: Ranking = {
       id: rankingId,
-      member: null,
-      competition: null,
-      rank: 0,
-      score: 0,
     };
 
     this.competitionService.joinCompetition(ranking).subscribe({

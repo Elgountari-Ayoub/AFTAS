@@ -17,7 +17,7 @@ export class ManagerCompetitionsComponent {
   competitions: Competition[] = [];
   members: Member[] = [];
   competitionCode: string | null = null;
-  memberNum: number | null = null;
+  memberId: number | null = null;
 
   rankingIdForm!: FormGroup;
   errorMessages: string[] = [];
@@ -31,7 +31,7 @@ export class ManagerCompetitionsComponent {
   ) {
     this.rankingIdForm = this.formBuilder.group({
       competitionCode: ['', Validators.required],
-      memberNum: ['', [Validators.required]],
+      memberId: ['', [Validators.required]],
     });
   }
 
@@ -115,7 +115,7 @@ export class ManagerCompetitionsComponent {
     this.errorMessages = [];
     const rankingIdForm = { ...this.rankingIdForm.value };
     const rankingId: RankingId = {
-      memberNum: rankingIdForm.memberNum,
+      memberId: rankingIdForm.memberId,
       competitionCode: rankingIdForm.competitionCode,
     };
 

@@ -11,6 +11,8 @@ import { MemberCreateComponent } from './components/members/member-create/member
 import { ManagerDashComponent } from './components/manager-dash/manager-dash.component';
 import { ManagerCompetitionsComponent } from './components/manager-dash/manager-competitions/manager-competitions.component';
 import { ManagerMembersComponent } from './components/manager-dash/manager-members/manager-members.component';
+import { ManagerHuntingsComponent } from './components/manager-dash/manager-huntings/manager-huntings.component';
+import { ManagerUsersComponent } from './components/manager-dash/manager-users/manager-users.component';
 
 const routes: Routes = [
   { path: 'signup', component: SignupComponent },
@@ -27,6 +29,8 @@ const routes: Routes = [
     path: 'manager-dash', component: ManagerDashComponent, children: [
       { path: 'competitions', component: ManagerCompetitionsComponent },
       { path: 'members', component: ManagerMembersComponent },
+      { path: 'huntings', component: ManagerHuntingsComponent },
+      { path: 'users', component: ManagerUsersComponent },
       { path: '', redirectTo: 'competitions', pathMatch: 'full' },
 
 

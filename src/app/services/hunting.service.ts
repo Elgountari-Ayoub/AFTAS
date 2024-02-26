@@ -26,6 +26,6 @@ export class HuntingService {
   save(hunting: Hunting): Observable<void> {
     console.log(hunting);
     
-    return this.http.post<void>(`${this.baseUrl}` ,{}, { headers: this.headers });
+    return this.http.post<void>(`${this.baseUrl}`, hunting, { headers: this.headers });
   }
 }
