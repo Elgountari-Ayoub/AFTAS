@@ -55,7 +55,6 @@ export class ManagerHuntingsComponent implements OnInit {
       this.competitionCode = competitionCode;
       this.memberId = memberId;
 
-      alert(this.competitionCode+ ' / ' +this.memberId);
 
       this.showHuntingModal(  );
     }

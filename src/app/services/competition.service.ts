@@ -63,7 +63,6 @@ export class CompetitionService {
   }
 
   joinCompetition(ranking: Ranking): Observable<void> {
-    alert(ranking.id?.competitionCode + '' + ranking.id?.memberId);
     return this.http.post<void>(`${this.baseUrl}/join`, ranking,{ headers: this.headers }).pipe(
       catchError((error) => {
         console.error('Error joining competition:', error);

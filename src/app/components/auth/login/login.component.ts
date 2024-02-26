@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthenticationService,
+    private userService: UserService,
     private router: Router,
   ) {
     this.signInForm = this.formBuilder.group({
@@ -36,7 +38,19 @@ export class LoginComponent implements OnInit {
       next: (respone) => {
         if (respone.token) this.authService.setAuthToken(respone.token);
         const auth = this.authService.getAuthUser();
-        alert(auth?.role)
+        this.userService.getById(auth?.id).subscribe({
+          next: (fetchedUser) => {
+            if (!fetchedUser.isAccepted) {
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Not approved',
+                  text: 'You don\'t have the access yet!',
+                })
+              this.router.navigate(['/home']);
+            }
+              
+          }
+        });
         switch (auth?.role) {
           case 'MEMBER':
             this.router.navigate(['/member-dash']);
@@ -58,7 +72,6 @@ export class LoginComponent implements OnInit {
           icon: 'error',
           title: 'Oops...',
           text: error.error,
-          footer: error,
         });
       },
     });

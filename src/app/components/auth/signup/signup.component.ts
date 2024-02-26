@@ -59,7 +59,6 @@ export class SignupComponent implements OnInit {
           icon: 'error',
           title: 'Oops...',
           text: 'Something went wrong!',
-          footer: error,
         });
         console.log(error.error);
       },
